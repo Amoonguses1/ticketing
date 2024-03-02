@@ -9,7 +9,7 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "test": "node",
+    "testEnvironment": "node",
     "setupFilesAfterEnv": [
       "./src/test/setup.ts"
     ]
@@ -18,25 +18,25 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/cookie-session": "^2.0.48",
-    "@types/express": "^4.17.21",
-    "@types/jsonwebtoken": "^9.0.5",
-    "@udemy-tic/common": "^1.0.1",
-    "cookie-session": "^2.1.0",
+    "@types/cookie-session": "^2.0.44",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@udemy-tic/common": "^1.0.9",
+    "cookie-session": "^2.0.0",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "express-validator": "^7.0.1",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.1.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.0.4"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/supertest": "^6.0.2",
-    "jest": "^29.7.0",
-    "mongodb-memory-server": "^9.1.6",
-    "supertest": "^6.3.4",
-    "ts-jest": "^29.1.2"
+    "@types/jest": "^29.5.1",
+    "@types/supertest": "^2.0.12",
+    "jest": "^29.5.0",
+    "mongodb-memory-server": "^8.12.2",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.0"
   }
 }

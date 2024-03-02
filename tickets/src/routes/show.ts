@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { NotFoundError, requireAuth } from '@udemy-tic/common';
+import { NotFoundError } from '@udemy-tic/common';
 import { Ticket } from '../models/ticket';
 
 const router = express.Router();
