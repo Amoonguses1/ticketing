@@ -1,5 +1,4 @@
 import nats, { Stan } from 'node-nats-streaming';
-import { resolve } from 'path';
 
 class NatsWrapper {
   private _client?: Stan;
@@ -8,6 +7,7 @@ class NatsWrapper {
     if (!this._client) {
       throw new Error('Cannot access NATS client before connecting');
     }
+
     return this._client;
   }
 

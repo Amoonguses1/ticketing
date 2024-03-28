@@ -81,7 +81,7 @@ it('creates a ticket with valid inputs', async () => {
   expect(tickets[0].title).toEqual(title);
 });
 
-it('published an event', async () => {
+it('publishes an event', async () => {
   const title = 'asldkfj';
 
   await request(app)
