@@ -1,17 +1,17 @@
-import { OrderCreatedEvent, OrderStatus } from '@udemy-tic/common';
-import { Ticket } from '../../../models/ticket';
-import { natsWrapper } from '../../../nats-wrapper';
-import { OrderCretatedListener } from '../order-created-listener';
-import mongoose from 'mongoose';
 import { Message } from 'node-nats-streaming';
+import mongoose from 'mongoose';
+import { OrderCreatedEvent, OrderStatus } from '@udemy-tic/common';
+import { OrderCreatedListener } from '../order-created-listener';
+import { natsWrapper } from '../../../nats-wrapper';
+import { Ticket } from '../../../models/ticket';
 
 const setup = async () => {
-  // Create an instance of listener
-  const listener = new OrderCretatedListener(natsWrapper.client);
+  // Create an instance of the listener
+  const listener = new OrderCreatedListener(natsWrapper.client);
 
   // Create and save a ticket
   const ticket = Ticket.build({
-    title: 'Concert',
+    title: 'concert',
     price: 99,
     userId: 'asdf',
   });
@@ -22,15 +22,15 @@ const setup = async () => {
     id: new mongoose.Types.ObjectId().toHexString(),
     version: 0,
     status: OrderStatus.Created,
-    userId: 'asdfdaf',
-    expiresAt: 'afohi',
+    userId: 'alskdfj',
+    expiresAt: 'alskdjf',
     ticket: {
       id: ticket.id,
       price: ticket.price,
     },
   };
 
-  //@ts-ignore
+  // @ts-ignore
   const msg: Message = {
     ack: jest.fn(),
   };
@@ -50,7 +50,6 @@ it('sets the userId of the ticket', async () => {
 
 it('acks the message', async () => {
   const { listener, ticket, data, msg } = await setup();
-
   await listener.onMessage(data, msg);
 
   expect(msg.ack).toHaveBeenCalled();

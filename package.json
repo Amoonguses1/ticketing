@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@udemy-tic/common": "^1.0.14",
     "node-nats-streaming": "^0.3.2"
   }
 }

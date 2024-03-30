@@ -1,12 +1,15 @@
 import { Listener, OrderCancelledEvent, Subjects } from '@udemy-tic/common';
 import { queueGroupName } from './queue-group-name';
-import { Message } from 'node-nats-streaming';
+import { Message, Stan } from 'node-nats-streaming';
 import { Ticket } from '../../models/ticket';
 import { TicketUpdatedPublisher } from '../publishers/ticket-updated-publisher';
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
   readonly subject = Subjects.OrderCancelled;
   queueGroupName = queueGroupName;
+  constructor(client: Stan) {
+    super(client);
+  }
 
   async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
     const ticket = await Ticket.findById(data.ticket.id);
@@ -27,5 +30,20 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
     });
 
     msg.ack();
+  }
+
+  listen() {
+    const subscription = this.client.subscribe(
+      this.subject,
+      this.queueGroupName,
+      this.subscriptionOptions()
+    );
+
+    subscription.on('message', (msg: Message) => {
+      console.log(`Message received: ${this.subject} / ${this.queueGroupName}`);
+
+      const parsedData = this.parseMessage(msg);
+      this.onMessage(parsedData, msg);
+    });
   }
 }
